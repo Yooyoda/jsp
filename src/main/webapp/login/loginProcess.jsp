@@ -9,7 +9,7 @@
 <title>loginProcess</title>
 </head>
 <body>
-	loginProcess.jsp <Br>
+	loginProcess.jsp <Br>  
 	<%--post방식 한글 파라미터 --%>
 	<% request.setCharacterEncoding("utf-8"); %>
 	
