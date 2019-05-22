@@ -17,8 +17,9 @@
 	<h2>request객체의 getParameter, getParameterValues</h2>
 	request.getParameter("userId") : <%=request.getParameter("userId") %> <br>
 	request.getParameterValues("userId") : 
-				<% String[] userIds = request.getParameterValues("userId"); 
-					for(String userId : userIds){ %>
+				<% 
+				String[] userIds = request.getParameterValues("userId"); 
+				for(String userId : userIds){ %>
 					<%= userId %> <br>
 					<%} %>			
 	
