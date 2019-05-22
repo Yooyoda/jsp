@@ -18,11 +18,15 @@
 <!-- localhost/jsp/jsp/timesTable.jsp -->
 <!-- 9*9단 출력 (2~9단) -->
 <table>
-	<% for(int i=2;i<=9; i++){
+	<% 
+	String param1 = request.getParameter("param1");
+	String param2 = request.getParameter("param2");
+	
+	for(int i=2;i<=Integer.parseInt(param2); i++){
 	%>
 	<tr>
 		<%	
-			for(int j=1;j<=9;j++){
+			for(int j=1;j<=Integer.parseInt(param1);j++){
 		%>
 				<td>
 					<%=i%> * <%=j%> = <%= i*j %>
