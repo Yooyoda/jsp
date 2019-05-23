@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.or.ddit.user.model.UserVO;
+
 /**
  * Servlet implementation class LoginController
  */
@@ -48,10 +50,21 @@ public class LoginController extends HttpServlet {
 		// /login.login.jsp 위임 --> 서버상에 별도의 상태 변경을 가하는 요청이 아니기 때문에
 		//							dispatch 방식으로 위임
 		
-		//request.getRequestDispatcher("/login/login.jsp").forward(request, response); //방법1
-		//방법2
-		RequestDispatcher rd = request.getRequestDispatcher("/login/login.jsp");
-		rd.forward(request, response);
+		//방법1
+		//request.getRequestDispatcher("/login/login.jsp").forward(request, response); 
+		
+		//session에 사용자 정보가 있을 경우 --> main 화면으로 이동
+		if(request.getSession().getAttribute("USER_INFO") != null) {
+			request.getRequestDispatcher("/main.jsp").forward(request, response); 
+			
+		}else {
+		//session에 사용자 정보가 없을 경우 --> 기존 로직
+			//방법2
+			RequestDispatcher rd = request.getRequestDispatcher("/login/login.jsp");
+			rd.forward(request, response);
+		
+		}
+		
 	}
 	
 	//로그인 요청을 처리
@@ -70,6 +83,11 @@ public class LoginController extends HttpServlet {
 		
 		//일치하면 (로그인성공) : main화면으로 이동
 		if(userId.equals("brown") && password.equals("brown1234")) {
+			
+			//session에 사용자 정보를 넣어줌(사용빈도가 높기 때문에)
+			request.getSession().setAttribute("USER_INFO", new UserVO("브라운", "brown", "곰")); 
+			
+			
 			RequestDispatcher rd =  request.getRequestDispatcher("/main.jsp");
 			rd.forward(request, response);
 			
@@ -78,7 +96,7 @@ public class LoginController extends HttpServlet {
 			//현상황에서 /jsp/login url로 dispatch 방식으로 위임이 불가
 			//request.getMethod(); // GET, POST
 			
-			response.sendRedirect(request.getContextPath() + "/login");
+			response.sendRedirect(request.getContextPath() + "/test/login.jsp");
 			
 			
 		}
