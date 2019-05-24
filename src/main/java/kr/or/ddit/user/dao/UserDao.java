@@ -20,9 +20,11 @@ public class UserDao implements IuserDao{
 		
 		/***When***/
 		List<UserVO> userList =  userDao.userList();
+		UserVO getUser = userDao.getUser("brown");
 		
 		/***Then***/
 		logger.debug("userList : {}", userList);
+		logger.debug("getUser : {}", getUser);
 		
 	}
 
@@ -40,5 +42,23 @@ public class UserDao implements IuserDao{
 		List<UserVO> userList =  sqlSession.selectList("user.userList");
 		
 		return userList;
+	}
+
+	
+	/**
+	 * 
+	* Method : getUser
+	* 작성자 : PC09
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 정보 조회
+	 */
+	@Override
+	public UserVO getUser(String userId) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		UserVO user = sqlSession.selectOne("user.getUser",userId);
+		
+		return user;
 	}
 }

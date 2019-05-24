@@ -3,10 +3,13 @@ package kr.or.ddit.user.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.or.ddit.user.dao.IuserDao;
+import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVO;
 
 public class UserService implements IuserService{
 
+	IuserDao userDao = new UserDao();
 	/**
 	 * 
 	* Method : userList
@@ -20,13 +23,20 @@ public class UserService implements IuserService{
 		// db에서 데이터를 조회했다고 가정
 		List<UserVO> userList = new ArrayList<UserVO>();
 		
-		userList.add(new UserVO("샐리", "sally", "오리"));
-		userList.add(new UserVO("브라운", "brown", "곰"));
-		userList.add(new UserVO("코니", "cony", "토끼"));
-		userList.add(new UserVO("제임스", "james", "사람"));
-		userList.add(new UserVO("문", "moon", "달"));
+		userList = userDao.userList();
 		
 		return userList;
 	}
+
+	@Override
+	public UserVO getUser(String userId) {
+		UserVO user ;
+		user = userDao.getUser(userId);
+		
+		return user;
+	}
+	
+	
+	
 
 }
