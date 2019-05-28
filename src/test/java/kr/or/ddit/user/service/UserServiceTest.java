@@ -3,6 +3,7 @@ package kr.or.ddit.user.service;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.dao.UserDao;
 import kr.or.ddit.user.model.UserVO;
 
@@ -71,7 +73,7 @@ public class UserServiceTest {
 
 		/***Then***/
 		assertEquals("brown", userlist.get(0).getUserId());
-		assertEquals(5, userlist.size()); //메서드 실행하는것,(기대값,실제값)
+		assertEquals(105, userlist.size()); //메서드 실행하는것,(기대값,실제값)
 		logger.debug("userList : {} " , userlist);
 		
 	}
@@ -94,7 +96,43 @@ public class UserServiceTest {
 		
 	}
 	
+	@Test
+	public void userPagingListTest() {
+		
+		/***Given***/
+		PageVO pagevo = new PageVO(1, 10);
+		
+		
+		/***When***/
+		Map<String, Object> resultMap = userService.userPagingList(pagevo);
+		List<UserVO> userlist= (List<UserVO>) resultMap.get("userList");
+		int paginationSize = (Integer) resultMap.get("paginationSize");
 
+		/***Then***/
+		//pagingList assert
+		assertNotNull(userlist);
+		assertEquals(10, userlist.size());
+		
+		//usersCnt assert
+		assertEquals(11, paginationSize);
+		
+	}
+	
+	@Test
+	public void ceilTest() {
+		/***Given***/
+		int usersCnt = 105;
+		int pageSize = 10;
+		
+		/***When***/
+		double paginationSize =  Math.ceil((double)usersCnt/pageSize);
+		logger.debug("paginationSize : {}" , paginationSize);
+		
+		/***Then***/
+		assertEquals(11, (int)paginationSize);
+		
+		
+	}
 	
 
 }

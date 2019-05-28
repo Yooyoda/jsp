@@ -5,6 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kr.or.ddit.user.model.UserVO" alias="userVO"/>
+		<typeAlias type="kr.or.ddit.paging.model.PageVO" alias="pageVO"/>
+		<typeAlias type="kr.or.ddit.lprod.model.LprodVO" alias="lprodVO"/>
+		
+		
 	</typeAliases>
 
   <environments default="development">
@@ -22,5 +26,7 @@
   
   <mappers>
     <mapper resource="kr/or/ddit/config/mybatis/mapper/user.xml"/>
+    <mapper resource="kr/or/ddit/config/mybatis/mapper/lprod.xml"/>
+    
   </mappers>
 </configuration>

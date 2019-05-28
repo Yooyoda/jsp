@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import kr.or.ddit.paging.model.PageVO;
 import kr.or.ddit.user.model.UserVO;
 
 public class UserDaoTest {
@@ -72,7 +73,7 @@ public class UserDaoTest {
 		
 		/***Then***/
 		assertEquals("brown", userList.get(0).getUserId());
-		assertEquals(5, userList.size()); //메서드 실행하는것,(기대값,실제값)
+		assertEquals(105, userList.size()); //메서드 실행하는것,(기대값,실제값)
 		logger.debug("userList : {} " , userList);
 		
 	}
@@ -96,4 +97,54 @@ public class UserDaoTest {
 	//정렬순서? : 로직 --> 파라미터화 시킬 수 있다
 	//--> 우리는 사용자 아이디 순으로 정렬
 
+	
+	/**
+	 * 
+	* Method : userPagingListTest
+	* 작성자 : PC09
+	* 변경이력 :
+	* Method 설명 : 사용자 페이징 리스트 조회 테스트
+	 */
+	@Test
+	public void userPagingListTest() {
+		
+		/***Given***/
+		PageVO pagevo = new PageVO(1, 10);
+		
+		
+		/***When***/
+		List<UserVO> userlist= userDao.userPagingList(pagevo);
+		
+
+		/***Then***/
+		assertNotNull(userlist);
+		assertEquals(10, userlist.size());
+		
+	}
+	
+	/**
+	 * 
+	* Method : usersCntTest
+	* 작성자 : PC09
+	* 변경이력 :
+	* Method 설명 : 사용자 전체수 조회 테스트
+	 */
+	@Test
+	public void usersCntTest() {
+		/***Given***/
+		
+		
+		/***When***/
+		int cnt = userDao.usersCnt();
+		
+		/***Then***/
+		assertEquals(105, cnt);
+		
+		
+		
+	}
+	
+	
+	
+	
 }
