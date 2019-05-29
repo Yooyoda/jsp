@@ -1,6 +1,7 @@
 <%@page import="kr.or.ddit.user.model.UserVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,22 +33,24 @@
 					<div class="table-responsive">
 						<table class="table table-striped">
 							<tr>
-								<th>사용자 아이디</th>
+								<th>사용자 아이디(el)</th>
 								<th>사용자 이름</th>
 								<th>사용자 별명</th>
 								<th>등록일시</th>
 							</tr>
-							<%
-								List<UserVO> userList = (List<UserVO>)request.getAttribute("userList");
-								for(UserVO user : userList){
-							%>
-							<tr>
-								<td><%=user.getUserId()%></td>
-								<td><%=user.getName()%></td>
-								<td><%=user.getAlias()%></td>
-								<td></td>
-							</tr>
-							<%}%>
+							
+							
+							<!-- userList의 데이터를 한건 조회해서
+								pageContext.setAttribute("user",vo); -->
+							<c:forEach items="${userList }" var="user">
+								<tr>
+									<td>${user.userId }</td>
+									<td>${user.name }</td>
+									<td>${user.alias }</td>
+									<td></td>
+								</tr>
+							</c:forEach>
+							
 						</table>
 					</div>
 
