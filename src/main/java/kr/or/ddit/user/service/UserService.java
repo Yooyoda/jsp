@@ -52,6 +52,7 @@ public class UserService implements IuserService {
 //		userList = userDao.userPagingList(pagevo);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
+		//userList라는 아이디로 map에 저장해서 페이지 정보 넘김
 		resultMap.put("userList",userDao.userPagingList(pagevo));
 		
 		//usersCnt --> paginationSize 변경

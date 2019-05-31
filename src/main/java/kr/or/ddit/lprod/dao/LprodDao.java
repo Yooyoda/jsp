@@ -16,7 +16,7 @@ public class LprodDao implements ILprodDao {
 	@Override
 	public List<LprodVO> lprodPagingList(PageVO pagevo) {
 		SqlSession sqlsession = MyBatisUtil.getSqlSession();
-		List<LprodVO> list = sqlsession.selectList("lprod.lprodPagingList");
+		List<LprodVO> list = sqlsession.selectList("lprod.lprodPagingList",pagevo);
 		sqlsession.close();
 		return list;
 	}

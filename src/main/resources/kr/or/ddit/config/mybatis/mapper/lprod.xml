@@ -5,7 +5,7 @@
 <mapper namespace="lprod">
 	
 	<!-- 페이지 리스트 조회 -->
-	<select id="lprodPagingList" parameterType="PageVO" resultType="LprodVO">
+	<select id="lprodPagingList" parameterType="pageVO" resultType="lprodVO">
 		 <![CDATA[
 			 select * 
 			 from 

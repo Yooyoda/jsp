@@ -34,9 +34,9 @@
 			var rememberme =  Cookies.get("rememberme");
 			
 			if(rememberme == "true"){
-				$("#rememberme").prop("checked",true);
-				$("#userId").val(Cookies.get("userId"));
-				$("#password").focus();
+				$("#rememberme").prop("checked",true); //checkbox의 값을 true로 추가
+				$("#userId").val(Cookies.get("userId"));//쿠키에서 userId의 값을 가져와서 id가 userId인 부분의 값으로 줌
+				$("#password").focus(); //
 			}
 			
 			//signin button 클릭 시 실행되는 핸들러
@@ -57,6 +57,7 @@
 // 				}
 				
 				//로그인 요청을 서버로 전송
+				//frm에서 지정해준 action의 경로로 이동
 				$("#frm").submit();
 				
 				

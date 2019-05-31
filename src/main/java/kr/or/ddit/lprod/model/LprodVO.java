@@ -7,11 +7,11 @@ public class LprodVO {
 	private String lprodNm;
 	
 	
-	public LprodVO(int id, String gu, String nm) {
+	public LprodVO(int lprodId, String lprodGu, String lprodNm) {
 		super();
-		this.lprodId=id;
-		this.lprodGu=gu;
-		this.lprodNm=nm;
+		this.lprodId = lprodId;
+		this.lprodGu = lprodGu;
+		this.lprodNm = lprodNm;
 	}
 	
 	public int getLprodId() {
@@ -36,6 +36,9 @@ public class LprodVO {
 	public String toString() {
 		return "LprodVO [lprodId=" + lprodId + ", lprodGu=" + lprodGu + ", lprodNm=" + lprodNm + "]";
 	}
+	
+	
+	
 	
 	
 	

@@ -24,10 +24,12 @@ import kr.or.ddit.user.service.UserService;
 @WebServlet("/userPagingList")
 public class UserPagingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	//userService를 사용하기 위한 객체 생성
     private IuserService userService;
     
     private static final Logger logger = LoggerFactory.getLogger(UserPagingController.class);
 	
+    //서블릿 실행하자하자 실행할 init()함수
 	@Override
 	public void init() throws ServletException {
 		userService = new UserService();
@@ -35,23 +37,24 @@ public class UserPagingController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String page1 = request.getParameter("page");
-		String pageSize1 = request.getParameter("pageSize");
+		
+		String page1 = request.getParameter("page"); //page라는 파라미터의 값 가져옴
+		String pageSize1 = request.getParameter("pageSize"); //pageSize라는 파라미터의 값 가져옴
 		
 		int page = 0;
 		int pageSize = 0;
 		
-		if (page1 == null && pageSize1 == null){
+		if (page1 == null && pageSize1 == null){ //파라미터가 없으면
 			page = 1;
 			pageSize = 10;
 			
-		}else {
-			page = Integer.parseInt(request.getParameter("page"));
-			pageSize = Integer.parseInt(request.getParameter("pageSize"));
+		}else { //파라미터가 있으면
+			page = Integer.parseInt(page1);
+			pageSize = Integer.parseInt(pageSize1);
 			
 		}
 		
-		PageVO pagevo = new PageVO(page,pageSize);
+		PageVO pagevo = new PageVO(page,pageSize); //페이지 객체 생성
 		
 		Map<String, Object> resultMap = userService.userPagingList(pagevo);
 		List<UserVO> userlist= (List<UserVO>) resultMap.get("userList"); //몇 페이지에서 몇개 출력할지

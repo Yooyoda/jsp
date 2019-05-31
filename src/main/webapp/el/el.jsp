@@ -9,6 +9,7 @@
 <body>
 
 	<!-- scope객체에 저장한 속성명 -->
+<%-- 	<%=userId %> --%>
 	userId : ${userId} <bR>
 	
 	<!-- 특정 scope객체에 있는 속성을 명시적으로 가져올 경우 -->

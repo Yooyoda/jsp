@@ -13,15 +13,13 @@
 		ResultSet rs = null;
 		
 		try {
-			//bs가져오기
+			//bs가져오기 - 오라클 접속 정보
 			BasicDataSource bs = (BasicDataSource)application.getAttribute("bs");
-			
-			
 			
 			// 2. 접속 ==> Connection객체 생성
 			long startTime = System.currentTimeMillis();
 			for(int i=0; i< 20; i++){
-				conn =  bs.getConnection();
+				conn =  bs.getConnection(); //오라클 접속 정보로 접속
 				conn.close();
 			}
 			long endTime = System.currentTimeMillis();

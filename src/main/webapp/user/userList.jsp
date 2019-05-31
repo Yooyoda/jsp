@@ -40,7 +40,11 @@
 							</tr>
 							
 							
-							<!-- userList의 데이터를 한건 조회해서
+							<!--
+								서블릿에서 입력한
+								request.setAttribute("userList", userService.userList());
+								이것을 사용(사용자 리스트 전체 받아온 것)
+								userList의 데이터를 한건 조회해서
 								pageContext.setAttribute("user",vo); -->
 							<c:forEach items="${userList }" var="user">
 								<tr>

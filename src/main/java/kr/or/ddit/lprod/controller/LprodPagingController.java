@@ -18,7 +18,7 @@ import kr.or.ddit.paging.model.PageVO;
 /**
  * Servlet implementation class LprodPagingController
  */
-@WebServlet("/lprodPaging")
+@WebServlet("/lprodPagingList")
 public class LprodPagingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
@@ -32,8 +32,8 @@ public class LprodPagingController extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String page1 = null;
-		String pageSize1 = null;
+		String page1 = request.getParameter("page");
+		String pageSize1 = request.getParameter("pageSize");
 	
 		int page=0;
 		int pageSize=0;
@@ -43,8 +43,8 @@ public class LprodPagingController extends HttpServlet {
 			pageSize = 5;
 			
 		}else {
-			page = Integer.parseInt(page1);
-			pageSize = Integer.parseInt(pageSize1);
+			page = Integer.parseInt(request.getParameter("page"));
+			pageSize = Integer.parseInt(request.getParameter("pageSize"));
 			
 		}
 		
@@ -56,7 +56,7 @@ public class LprodPagingController extends HttpServlet {
 		
 		request.setAttribute("lprodList", lprodlist);
 		request.setAttribute("paginationSize", paginationSize);
-		request.setAttribute("pageVO", pagevo);
+		request.setAttribute("pageVo", pagevo);
 		request.getRequestDispatcher("/lprod/lprod.jsp").forward(request, response);
 		
 	
