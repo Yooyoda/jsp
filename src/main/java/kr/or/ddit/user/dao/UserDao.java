@@ -3,6 +3,8 @@ package kr.or.ddit.user.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.Session;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,4 +91,63 @@ public class UserDao implements IuserDao{
 		sqlSession.close();
 		return cnt;
 	}
-}
+
+	
+	/**
+	 * 
+	* Method : insertUser
+	* 작성자 : PC09
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 등록
+	 */
+	@Override
+	public int insertUser(UserVO userVo) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int cnt = sqlSession.insert("user.insertUser", userVo);
+		sqlSession.commit();
+		sqlSession.close();
+		return cnt;
+	}
+
+	/**
+	 * 
+	* Method : deleteUser
+	* 작성자 : PC09
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 삭제
+	 */
+	@Override
+	public int deleteUser(String userId) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int cnt = sqlSession.delete("user.deleteUser",userId);
+		sqlSession.commit();
+		sqlSession.close();
+		return cnt;
+	}
+
+	/**
+	 * 
+	 * Method : updateUser
+	 * 작성자 : PC09
+	 * 변경이력 :
+	 * @param userId
+	 * @return
+	 * Method 설명 : 사용자 수정
+	 */
+	@Override
+	public int updateUser(UserVO uservo) {
+		SqlSession sqlSession = MyBatisUtil.getSqlSession();
+		int cnt = sqlSession.update("user.updateUser",uservo);
+		sqlSession.commit();
+		sqlSession.close();
+		return cnt;
+		
+	}
+	
+	
+
+}	

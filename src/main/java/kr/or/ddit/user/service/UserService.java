@@ -71,4 +71,21 @@ public class UserService implements IuserService {
 		return cnt;
 	}
 
+	@Override
+	public int insertUser(UserVO userVo) {
+		return userDao.insertUser(userVo);
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		return userDao.deleteUser(userId);
+	}
+
+	@Override
+	public int updateUser(UserVO uservo) {
+		return userDao.updateUser(uservo);
+	}
+
+	
+
 }

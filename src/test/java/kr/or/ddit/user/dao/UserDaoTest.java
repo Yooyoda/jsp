@@ -2,6 +2,8 @@ package kr.or.ddit.user.dao;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.junit.After;
@@ -140,11 +142,57 @@ public class UserDaoTest {
 		/***Then***/
 		assertEquals(105, cnt);
 		
+	}
+	
+	/**
+	 * 
+	* Method : insertUserTest
+	* 작성자 : PC09
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	 * @throws ParseException 
+	 */
+	@Test
+	public void insertUserTest() throws ParseException {
+		/***Given***/
+		//사용자 정보를 담고 있는 vo객체 준비
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		UserVO uservo = new UserVO("감자", "userTest", "감자사랑", "test123", "서울", "뭐시기", "123", sdf.parse("2019-05-31"));
+		/***When***/
+		//userDao.insertUser()
+		int cnt = userDao.insertUser(uservo);
 		
+		/***Then***/
+		//insertCnt(1)
+		assertEquals(1,cnt);
+		
+		//data 삭제
+		userDao.deleteUser(uservo.getUserId());
 		
 	}
 	
-	
-	
+	/**
+	 * 
+	* Method : updateUserTest
+	* 작성자 : PC09
+	* 변경이력 :
+	* @throws ParseException
+	* Method 설명 : 사용자 수정
+	 */
+	@Test
+	public void updateUserTest() throws ParseException {
+		
+		
+		/***Given***/
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		UserVO uservo = new UserVO("감자1", "userTest", "감자사랑", "test123", "서울", "뭐시기", "123", sdf.parse("2019-05-31"));
+		
+		/***When***/
+		int cnt = userDao.updateUser(uservo);
+
+		/***Then***/
+		assertEquals(cnt, 1);
+		
+	}
 	
 }

@@ -18,9 +18,6 @@
 <script>
 	$(document).ready(function(){
 		
-		var msg = '${msg}';
-		if(msg != '')
-			alert(msg);
 		
 		//주소찾기 버튼 클릭 이벤트 핸들러
 		$("#addrSearchBtn").on("click",function(){
@@ -44,8 +41,6 @@
 			//유효성 체크
 			//console.log("userRegBtn click");
 			
-			var userId = $(this).data("userId");
-			$(this).find(".userId").text();
 			//여기까지 도달하면 유효성 검사 완료(submit)
 			$("#frm").submit();
 			
@@ -53,24 +48,10 @@
 			
 		});
 		
-		//개발용 데이터 초기화 함수 ===== 추후 지우기
-		//dataInit();
-		
 		
 	});
 	
-function dataInit(){
-	$("#userId").val("userTest");
-	$("#name").val("꾸꾸");
-	$("#alias").val("과자");
-	$("#addr1").val("주소1번");
-	$("#addr2").val("주소2번");
-	$("#zipcd").val("45467");
-	$("#birth").val("2019-05-31");
-	$("#pass").val("userTest1234");
-	
-	
-}
+
 	
 
 </script>
@@ -84,24 +65,26 @@ function dataInit(){
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<div class="row">
 					<div class="col-sm-8 blog-main">
-						<h2 class="sub-header">사용자 등록</h2>
+						<h2 class="sub-header">사용자 수정</h2>
 						
 						<form id="frm" class="form-horizontal" role="form"
-							action="${pageContext.request.contextPath }/userForm"
+							action="${pageContext.request.contextPath }/userModify"
 							method="post">
+							
+							
 							
 							<div class="form-group">
 								<label for="filename" class="col-sm-2 control-label">사용자 사진</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control" id="filename" name="filename">
+									<input type="file" class="form-control" id="filename" name="filename" 
+									value="${userVo.filename }" >
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label for="userId" class="col-sm-2 control-label">사용자 아이디</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="userId" name="userId" 
-									value="${param.userId }" placeholder="아이디를 입력하세요.">
+									<label id="userId" >${userVo.userId }</label>
 								</div>
 							</div>
 							
@@ -109,7 +92,7 @@ function dataInit(){
 								<label for="pass" class="col-sm-2 control-label">사용자 비밀번호</label>
 								<div class="col-sm-10">
 									<input type="password" class="form-control" id="pass" name="pass" 
-									value="${param.pass }" placeholder="비밀번호를 입력하세요."
+									value="${userVo.pass}" placeholder="비밀번호를 입력하세요."
 									>
 								</div>
 							</div>
@@ -118,7 +101,7 @@ function dataInit(){
 								<label for="name" class="col-sm-2 control-label">사용자 이름</label>
 								<div class="col-sm-10">
 								<input type="text" class="form-control" id="name" name="name" 
-								value="${param.name }"placeholder="이름을 입력하세요.">
+								value="${userVo.name }"placeholder="이름을 입력하세요.">
 								</div>
 							</div>
 							
@@ -126,7 +109,7 @@ function dataInit(){
 								<label for="alias" class="col-sm-2 control-label">별명</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="alias" name="alias" 
-									value="${param.alias}" placeholder="사용자 별명을 입력하세요.">
+									value="${userVo.alias}" placeholder="사용자 별명을 입력하세요.">
 								</div>
 							</div>
 							
@@ -134,7 +117,7 @@ function dataInit(){
 								<label for="addr1" class="col-sm-2 control-label">주소</label>
 								<div class="col-sm-8">
 									<input type="text" class="form-control" id="addr1" name="addr1" 
-									value="${param.addr1 }" placeholder="주소를 입력하세요." readonly>
+									value="${userVo.addr1 }" placeholder="주소를 입력하세요." readonly>
 								</div>
 								<div class="col-sm-2">
 									<button type="button" id="addrSearchBtn" class="btn btn-default pull-right">주소검색</button>
@@ -145,7 +128,8 @@ function dataInit(){
 							<div class="form-group">
 								<label for="addr2" class="col-sm-2 control-label">상세주소</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소를 입력하세요.">
+									<input type="text" class="form-control" id="addr2" name="addr2" 
+									value="${userVo.addr2}" placeholder="상세주소를 입력하세요.">
 								</div>
 							</div>
 							
@@ -153,20 +137,21 @@ function dataInit(){
 								<label for="zipcd" class="col-sm-2 control-label">우편번호</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="zipcd" name="zipcd" 
-									value="${param.zipcd }" placeholder="우편번호를 입력하세요." readonly>
+									value="${userVo.zipcd }" placeholder="우편번호를 입력하세요." readonly>
 								</div>
 							</div>
 							
 							<div class="form-group">
 								<label for="userNm" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
-									<input type="date" class="form-control" id="birth" name="birth" placeholder="생일을 입력하세요.">
+									<input type="date" class="form-control" id="birth" name="birth" 
+									value="${userVo.birthStr}" placeholder="생일을 입력하세요.">
 								</div>
 							</div>
 
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button id="userRegBtn" type="button" class="btn btn-default">사용자 등록</button>
+									<button id="userRegBtn" type="button" class="btn btn-default">사용자 수정 등록</button>
 								</div>
 							</div>
 						</form>

@@ -1,6 +1,7 @@
 package kr.or.ddit.user.model;
 
-import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UserVO {
 	private String name;
@@ -14,11 +15,20 @@ public class UserVO {
 	private String path;
 	private String filename;
 	
+	public String getBirthStr() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+		if(birth == null) {
+			return "";
+		}
+		return sdf.format(birth);
+	}
+	
 	public UserVO() {
 		
 	}
+
 	public UserVO(String name, String userId, String alias, String pass, String addr1, String addr2, String zipcd,
-			Date birth, String path, String filename) {
+			Date birth) {
 		super();
 		this.name = name;
 		this.userId = userId;
@@ -28,10 +38,9 @@ public class UserVO {
 		this.addr2 = addr2;
 		this.zipcd = zipcd;
 		this.birth = birth;
-		this.path = path;
-		this.filename = filename;
 	}
-	
+
+
 	public String getName() {
 		return name;
 	}

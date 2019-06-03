@@ -50,4 +50,36 @@ public interface IuserService {
 	 */
 	int usersCnt();
 	
+	/**
+	 * 
+	* Method : insertUser
+	* 작성자 : PC09
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 등록
+	 */
+	int insertUser(UserVO userVo);
+	
+	/**
+	 * 
+	* Method : deleteUser
+	* 작성자 : PC09
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 삭제
+	 */
+	int deleteUser(String userId);
+	
+	/**
+	 * 
+	* Method : updateUser
+	* 작성자 : PC09
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 수정
+	 */
+	int updateUser(UserVO uservo);
 }
