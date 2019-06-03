@@ -24,7 +24,7 @@ import kr.or.ddit.util.PartUtil;
  * Servlet implementation class FileUploadServlet
  */
 @WebServlet("/fileUpload")
-@MultipartConfig(maxFileSize = 1024*1024*3, maxRequestSize = 1024*1024) 
+@MultipartConfig(maxFileSize = 1024*1024*3, maxRequestSize = 1024*1024*15) 
 public class FileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -55,35 +55,13 @@ public class FileUploadServlet extends HttpServlet {
 			String contentDisposition = part.getHeader("content-disposition");
 			String fileName = PartUtil.getFileName(contentDisposition);
 			String ext = PartUtil.getExt(fileName);
-			ext = ext.equals("") ? "" : "." + ext;
 			
-			//연도에 해당하는 폴더가 있는지, 연도안에 월에 해당하는 폴더가 있는지
-			Date dt = new Date();
-			
-			//방법1
-			SimpleDateFormat yyyySdf = new SimpleDateFormat("yyyy");
-			SimpleDateFormat mmSdf = new SimpleDateFormat("MM");
-			String yyyy = yyyySdf.format(dt);
-			String mm = mmSdf.format(dt);
-			
-			
-			//신규 연도로 넘어갔을 때 해당 연도의 폴더를 생성
-			File yyyyFolder = new File("d:\\upload\\" + yyyy);
-			if(!yyyyFolder.exists()) {
-				yyyyFolder.mkdir();
-			}
-			
-			//월에 해당하는 폴더가 있는지 확인
-			File mmFolder = new File("d:\\upload\\2019\\" + mm);
-			if(!mmFolder.exists()) {
-				mmFolder.mkdir();
-			}
-			
-			String uploadPath = "d:\\upload\\" + yyyy + "\\" + mm;
+			String uploadPath = PartUtil.getUpLoadPath();
 			File uploadFolder = new File(uploadPath);
 			
 			if(uploadFolder.exists()) {
 				//파일 디스크에 쓰기
+				
 				part.write(uploadPath + File.separator + UUID.randomUUID().toString() + ext);
 				part.delete(); //임시공간 다 쓰고 지우기
 			}

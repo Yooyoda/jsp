@@ -60,8 +60,8 @@ public class PartUtilTest {
 		
 		
 		/***Then***/
-		assertEquals("png", ext);
-		assertEquals("png", ext2);
+		assertEquals(".png", ext);
+		assertEquals(".png", ext2);
 		assertEquals("", ext3);
 
 	}

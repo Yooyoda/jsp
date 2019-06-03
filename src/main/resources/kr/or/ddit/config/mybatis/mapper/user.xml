@@ -46,7 +46,8 @@
 
 	<insert id="insertUser" parameterType="userVO">
 		insert into users
-		values(#{userId},#{name},#{alias},#{pass},#{addr2},#{zipcd},#{birth},'','',#{addr1})
+		values(#{userId},#{name},#{alias},#{pass},#{addr2},#{zipcd},#{birth},
+			   #{path, jdbcType=VARCHAR},#{filename, jdbcType=VARCHAR},#{addr1})
 	</insert>
 
 
@@ -64,6 +65,11 @@
 			addr2=#{addr2}, 
 			zipcd=#{zipcd}, 
 			birth=#{birth}
+			<if test="path != null">
+			,filename =#{filename},
+			path=#{path}
+			
+			</if>
 		where userid = #{userId}
 	</update>
 </mapper>

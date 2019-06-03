@@ -4,6 +4,8 @@
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -69,15 +71,15 @@
 						
 						<form id="frm" class="form-horizontal" role="form"
 							action="${pageContext.request.contextPath }/userModify"
-							method="post">
+							method="post" enctype="multipart/form-data">
 							
 							
 							
 							<div class="form-group">
 								<label for="filename" class="col-sm-2 control-label">사용자 사진</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control" id="filename" name="filename" 
-									value="${userVo.filename }" >
+									<input type="file" class="form-control" id="filename" name="profile" >
+									<span>${userVo.filename }</span>
 								</div>
 							</div>
 							
@@ -145,7 +147,8 @@
 								<label for="userNm" class="col-sm-2 control-label">생일</label>
 								<div class="col-sm-10">
 									<input type="date" class="form-control" id="birth" name="birth" 
-									value="${userVo.birthStr}" placeholder="생일을 입력하세요.">
+									value='<fmt:formatDate value="${userVo.birth}" pattern = "yyyy-MM-dd"/>' placeholder="생일을 입력하세요.">
+									<span>${userVo.birthStr}</span>
 								</div>
 							</div>
 
