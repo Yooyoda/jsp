@@ -30,45 +30,49 @@ public class ProfileController extends HttpServlet {
 	}
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//사용자 아이디를 파라미터로부터 확인해서
-		String userId = request.getParameter("userId");
-		
-		//사용자 정보(path)를 조회
-		UserVO uservo = userService.getUser(userId);
-		FileInputStream fis = null;
-		//path정보로 file을 읽어 들여서
-		ServletOutputStream sos = response.getOutputStream();
-		
-		if(uservo.getPath() != null) {
-			//파일 객체 생성해서 사용자의 경로의 파일을 갖는 객체 생성
-			String filePath = null;
-			
-			//사용자가 업로드한 파일이 존재할 경우 : path
-			if(uservo.getPath() != null) {
-				filePath = uservo.getPath();
-				
-			//사용자가 업로드한 파일이 존재하지 않을 경우 : no-image.gif
-			}else 
-				filePath = getServletContext().getRealPath("/img/no_image.gif");
-				//webapp/img/no_image.gif
-			
-			
-			//File file = new File( uservo.getPath());
-			File file = new File(filePath);
-			fis = new FileInputStream(file);
-			byte[] buffer = new byte[512];
-			
-			//response객체에 스트림으로 써준다
-			while(fis.read(buffer,0,512) != -1){
-				//입력한 것들을 쓸것
-				sos.write(buffer);
-			}
-		}
-	
-		
-		
-		fis.close();
-		sos.close();
+	      //사용자 아이디를 파라미터로 부터 확인 
+	      String userId = request.getParameter("userId");
+	      
+	      
+	       // 사용자 정보를 조회 
+	      UserVO userVo = userService.getUser(userId);
+	      
+	      //path정보로 file을 읽어온다 
+	      ServletOutputStream sos=  response.getOutputStream();
+	      
+	      String filePath=null;
+	      FileInputStream fis = null;
+	      
+	      
+	      //사용자가 업로드한 파일이 존재할경우
+	      if(userVo.getPath()!=null){
+	         filePath=userVo.getPath();
+	      }
+	      
+	      //사용자가 업로드한 파일이 존재하지 않을경우
+	      
+	      else
+	         filePath= getServletContext().getRealPath("/img/no_image.gif");
+	         
+	      
+	      File file = new File(filePath);
+	      fis = new FileInputStream(file);
+	      byte[] buffer = new byte[512];
+	      
+	      
+	      while( fis.read(buffer ,0 ,512) !=-1){
+	         sos.write(buffer);
+	      }
+	      
+	      
+	      
+	      fis.close();
+	      sos.close();
+	      
+	      
+	      //PATH 정보로  file을 읽어 들여서 
+	      //response 객체에 스트림으로 써준다 
+	      //request.getRequestDispatcher("/user/user.jsp").forward(request, response);
 		
 		
 		
