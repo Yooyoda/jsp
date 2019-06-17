@@ -1,16 +1,16 @@
 <h1> JSP프로젝트 설명 </h1>
 
 <h2>2019.5.20</h2>
- 1. 개발환경 구축
- 2. 서버프로그램 구현
-  - 이클립스 개발환경 설정(주석 템플릿)
- 3. BasicServlet클래스 생성, servlet mapping 등록(web xml)
- 4. NowDateServlet클래스 생성, servlet mapping등록(web.xml)
-    response content-type
- 5. servlet life cycle
-    timesServlet
- 6. request parameter
-    timesServlet request Parameter적용
+ 1. 개발환경 구축 <br>
+ 2. 서버프로그램 구현<br>
+  - 이클립스 개발환경 설정(주석 템플릿)<br>
+ 3. BasicServlet클래스 생성, servlet mapping 등록(web xml)<br>
+ 4. NowDateServlet클래스 생성, servlet mapping등록(web.xml)<br>
+    response content-type<br>
+ 5. servlet life cycle<br>
+    timesServlet<br>
+ 6. request parameter<br>
+    timesServlet request Parameter적용<br>
  
  <h2>2019.5.21</h2>
  1. maven프로젝트, 기본 서블릿 생성
