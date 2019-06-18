@@ -45,7 +45,7 @@
 			//console.log("userRegBtn click");
 			
 			var userId = $(this).data("userId");
-			$(this).find(".userId").text();
+			//$(this).find(".userId").text();
 			//여기까지 도달하면 유효성 검사 완료(submit)
 			$("#frm").submit();
 			
