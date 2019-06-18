@@ -51,10 +51,10 @@ public class LoginController extends HttpServlet {
 		logger.debug("LoginController doGet()");
 		
 		//쿠키에 저장되어 있는 값들 가져옴
-		for(Cookie cookie : request.getCookies()) {//쿠키 배열을 반환 타입으로 함
-			logger.debug("cookie : {}, {}", cookie.getName(), cookie.getValue());
-		
-		}
+//		for(Cookie cookie : request.getCookies()) {//쿠키 배열을 반환 타입으로 함
+//			logger.debug("cookie : {}, {}", cookie.getName(), cookie.getValue());
+//		
+//		}
 		
 		//login화면을 처리해줄 누군가에게 위임
 		//단순 login화면을 html로 응답을 생성해주는 작업이 필요
