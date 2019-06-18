@@ -30,14 +30,7 @@ public class ARIAUtil {
 		return ARIAEngine.byteArrayToHex(c).toUpperCase();
 	}
 
-	/**
-	 * @param privateKey
-	 * @param src
-	 * @param dest
-	 * @throws IOException
-	 * @throws InvalidKeyException
-	 * @throws UnsupportedEncodingException
-	 */
+
 	public static void ariaFileEncrypt(String privateKey, String src, String dest) 
 	throws IOException, InvalidKeyException, UnsupportedEncodingException {
 		File f = new File(src); 
@@ -79,9 +72,7 @@ public class ARIAUtil {
 		}
 	}
 
-	/*
-	 *Aria 蹂듯�명��
-	 */
+
 	public static String ariaDecrypt(String strHex, String privateKey) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		if (strHex==null || strHex.equals("")) return "";
@@ -152,9 +143,7 @@ public class ARIAUtil {
 	}
 
 
-	/*
-	 *Aria 湲곕낯 蹂듯�명��
-	 */
+	
 	public static String ariaDecrypt(String strHex) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		String originalData = strHex;
@@ -179,9 +168,7 @@ public class ARIAUtil {
 			return originalData;
 		}
 	}
-	/*
-	*aria 湲곕낯 ���명��
-	*/
+
 	public static String ariaEncrypt(String str) 
 	throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
@@ -204,9 +191,7 @@ public class ARIAUtil {
 		return byteArrayToHex(c).toUpperCase();
 	}
 	
-	/*
-	*罹�由��곗�� 蹂�寃� ���명��
-	*/
+
 	public static String ariaCharEncrypt(String str, String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
@@ -227,10 +212,7 @@ public class ARIAUtil {
 		return byteArrayToHex(c).toUpperCase();
 	}
 	
-	/*
-	*罹�由��곗�� 蹂�寃� ���명��
-	*(��踰������ㅼ�� �대����踰� : read, �깅�愿�由ъ��踰� : regi)
-	*/
+
 	public static String ariaCharEncrypt(String str, String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException {
 		if (str==null || str.equals("")) return "";
@@ -256,9 +238,7 @@ public class ARIAUtil {
 
 
 
-	/*
-	 *Aria 罹�由��곗�� 蹂�寃� 蹂듯�명��
-	 */
+	
 	public static String ariaCharDecrypt(String strHex,  String charset) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		if (strHex==null || strHex.equals("")) return "";
@@ -278,10 +258,7 @@ public class ARIAUtil {
 		return buf.toString().trim();
 	}
 	
-	/*
-	 *Aria 罹�由��곗�� 蹂�寃� 蹂듯�명��
-	 *(��踰������ㅼ�� �대����踰� : read, �깅�愿�由ъ��踰� : regi)
-	 */
+
 	public static String ariaCharDecrypt(String strHex,  String charset, String server) 
 	throws InvalidKeyException, UnsupportedEncodingException  {
 		if (strHex==null || strHex.equals("")) return "";
